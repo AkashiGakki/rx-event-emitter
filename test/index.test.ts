@@ -5,7 +5,7 @@ describe('should', () => {
   it('exported', () => {
     let ret = ''
     RxEventEmitter.subscribe('test', (ev: any) => {
-      ret = ev.data
+      ret = ev.param.data
     })
     RxEventEmitter.notify('test', { data: 'use subscribe' })
     expect(ret).toEqual('use subscribe')
