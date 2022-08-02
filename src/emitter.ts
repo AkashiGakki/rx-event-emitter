@@ -3,7 +3,7 @@ import { Subject } from 'rxjs'
 
 const subject: Subject<any> = new Subject()
 
-export function subscribe(type: string, callback: (ev: any) => void): Subscription {
+export function subscribe(type: string, callback: Function): Subscription {
   const subscription: Subscription = subject.subscribe({
     next: (event: any) => {
       if (event.type === type)
