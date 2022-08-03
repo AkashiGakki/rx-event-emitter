@@ -46,6 +46,9 @@
     "test": "vitest",
     "typecheck": "tsc --noEmit"
   },
+  "dependencies": {
+    "rxjs": "^7.5.5"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^0.25.1",
     "@antfu/ni": "^0.16.2",
@@ -56,7 +59,6 @@
     "esno": "^0.16.3",
     "pnpm": "^7.2.1",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.5.5",
     "typescript": "^4.7.4",
     "unbuild": "^0.7.4",
     "vite": "^2.9.12",
