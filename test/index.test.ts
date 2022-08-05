@@ -5,7 +5,7 @@ describe('should', () => {
   it('exported', () => {
     let ret = ''
     RxEventEmitter.subscribe('test', (ev: any) => {
-      ret = ev.param.data
+      ret = ev.data
     })
 
     RxEventEmitter.notify('test', { data: 'use subscribe' })
@@ -14,7 +14,7 @@ describe('should', () => {
 
   it('exported', () => {
     let ret = ''
-    RxEventEmitter.on('use', (ev: any) => ret = ev.param.obj)
+    RxEventEmitter.on('use', (ev: any) => ret = ev.obj)
 
     RxEventEmitter.emit('use', { obj: 'test' })
     expect(ret).toEqual('test')
