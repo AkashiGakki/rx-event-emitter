@@ -5,3 +5,5 @@ Rx.subscribe('test', (ev: any) => {
 })
 
 Rx.notify('test', { data: 'test' })
+
+console.log('rx:', Rx)

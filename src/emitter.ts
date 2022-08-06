@@ -1,14 +1,14 @@
 import type { Subscription } from 'rxjs'
 import { Subject } from 'rxjs'
 
-import type { Param } from './types'
+import type { Param, Event } from './types'
 import { isObject } from './utils'
 
-const subject: Subject<any> = new Subject()
+export const subject: Subject<Object> = new Subject()
 
 export function subscribe(type: string, callback: Function): Subscription {
   const subscription: Subscription = subject.subscribe({
-    next: (event: any) => {
+    next: (event: Partial<Event>) => {
       if (event._type === type)
         callback(event)
     },
