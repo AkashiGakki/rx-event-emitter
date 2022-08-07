@@ -1,18 +1,24 @@
 import type { Subscription } from 'rxjs'
-import { Subject } from 'rxjs'
+import { Subject, filter, take } from 'rxjs'
 
-import type { Param, Event } from './types'
+import type { Event, Param } from './types'
 import { isObject } from './utils'
 
-export const subject: Subject<Object> = new Subject()
+const subject: Subject<Object> = new Subject()
+export const subscriptions: Map<string, Set<Subscription>> = new Map()
 
 export function subscribe(type: string, callback: Function): Subscription {
+  if (!subscriptions.has(type))
+    subscriptions.set(type, new Set())
+
   const subscription: Subscription = subject.subscribe({
     next: (event: Partial<Event>) => {
       if (event._type === type)
         callback(event)
     },
   })
+  subscriptions.get(type)?.add(subscription)
+
   return subscription
 }
 
@@ -31,4 +37,23 @@ export function on(type: string, callback: Function): Subscription {
 // alias notify
 export function emit(type: string, param?: Param) {
   notify(type, param)
+}
+
+export function once(type: string, callback: Function): Subscription {
+  const subscription: Subscription = subject.pipe(
+    filter((ev: any) => ev._type === type),
+    take(1),
+  ).subscribe({
+    next: (event: Partial<Event>) => {
+      callback(event)
+      subscription.unsubscribe()
+    },
+  })
+
+  return subscription
+}
+
+export function off(type: string): void {
+  subscriptions.get(type)?.forEach(sub => sub.unsubscribe())
+  subscriptions.delete(type)
 }
