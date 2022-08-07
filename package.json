@@ -13,7 +13,15 @@
     "url": "git+https://github.com/akashigakki/rx-event-emitter.git"
   },
   "bugs": "https://github.com/akashigakki/rx-event-emitter/issues",
-  "keywords": [],
+  "keywords": [
+    "event-emitter",
+    "node.js",
+    "rxjs",
+    "typescript",
+    "javascript",
+    "vue",
+    "react"
+  ],
   "sideEffects": false,
   "exports": {
     ".": {

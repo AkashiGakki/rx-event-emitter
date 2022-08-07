@@ -17,6 +17,15 @@ import emitter from 'rx-event-emitter'
 
 emitter.subscribe('shiori', () => console.log('shiori'))
 emitter.notify('shiori') // shiori
+
+emitter.once('nagi', () => console.log('nagi'))
+emitter.notify('nagi') // nagi
+emitter.notify('nagi')
+
+emitter.subscribe('asuka', () => console.log('asuka'))
+emitter.notify('asuka') // asuka
+emitter.off('asuka')
+emitter.notify('asuka')
 ```
 
 ## License
