@@ -26,6 +26,10 @@ emitter.subscribe('asuka', () => console.log('asuka'))
 emitter.notify('asuka') // asuka
 emitter.off('asuka')
 emitter.notify('asuka')
+
+// alias
+emitter.on('nao', () => console.log('nao')) // same as subscribe
+emitter.emit('nao') // same as notify expected 'nao'
 ```
 
 ## License
